@@ -1,0 +1,122 @@
+<div class="container-fluid">
+  <!-- Page Heading -->
+  <div class="row">
+      <div class="col-xl-12">
+          <h2 class="page-header">
+              Magnus Capital Trading Plateform
+          </h2>
+      </div>
+  </div>
+  <div>
+
+      <hr>
+      <!-- <alert *ngFor="let alert of alerts; let i = index" [type]="alert.type" dismissible="true" (close)="closeAlert(i)">
+          {{ alert?.msg }}
+      </alert>
+
+      <div>
+          <div class="card card-block">
+            <div class="table-responsive">
+              <table class="table table-dark">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Ticker</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="clickable-row">
+                    <th scope="row">1</th>
+                    <td>AAPL</td>
+                    <td>
+                      <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                    </td>
+                  </tr>
+                  <tr class="clickable-row">
+                    <th scope="row">2</th>
+                    <td>TSLA</td>
+                    <td>
+                          <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                        </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div> -->
+
+        <!-- <div>
+              {{stocks.name}}
+        </div> -->
+          
+        
+        <br>
+        
+        <form #f="ngForm" name="ngForm">
+          <div class="form-group col-md-6 mb-3">
+                <label>Select Strategy</label>
+                <select name="selectStrategy" class="form-control" [(ngModel)]="strategyOption" (change)="strategySelect()">
+                  <option id="twomaOption" value="twomaOption">Two Moving Averages</option>
+                  <option id="bbOption" value="bbOption">Bollinger Bands</option>
+                </select>
+          </div>
+          <div class="form-group col-md-6 mb-3">
+            <label>Enter ticker</label>
+            <input id="tickerInput" type="text" class="form-control" placeholder="Enter ticker" [(ngModel)]="tickerInput" name="tickerInput">
+          </div>
+
+          <div class="form-group col-md-6 mb-3">
+            <label>Enter number of shares</label>
+            <input id="numShares" type="text" class="form-control" placeholder="Enter number of shares" [(ngModel)]="numShares" name="numSharesInput">
+        </div>
+
+          <div class="form-group col-md-6 mb-3" >
+              <label>Enter long period</label>
+              <input id="lpInput" type="text" class="form-control" placeholder="Enter Long Period" [(ngModel)]="longPeriod" [disabled]="!isTwoMA" name="longPeriod">
+          </div>
+
+            <div class="form-group col-md-6 mb-3">
+                <label>Enter short period</label>
+                <input id="spInput" type="text" class="form-control" placeholder="Enter Short Period" [(ngModel)]="shortPeriod" [disabled]="!isTwoMA" name="shortPeriod">
+          </div>
+
+           <div class="form-group col-md-6 mb-3">
+                <label>Enter Period</label>
+                <input id="periodInput" type="text" class="form-control" placeholder="Period" [disabled]="isTwoMA" [(ngModel)]="period" name="first">
+            </div>  
+        
+    </form>
+    <br>
+    <div align="right">
+        <button name="start" type="submit" class="btn btn-success" id="start" (click)="onSubmit()">Start</button> &nbsp;
+        <button name="stop" type="submit" class="btn btn-danger" id="stop">Stop</button>
+    </div>
+        <br>
+        <button name="stop" type="submit" class="btn btn-primary" id="stop" (click)="getTrades()">Get History</button>
+
+        
+        <table class="table">
+          <thead class="thead-inverse">
+          <tr>
+              <th class="text-center" style="width: 80px;">ticker</th>
+              <th class="text-center" style="width: 80px;">Shares</th>
+              <th class="text-center" style="width: 80px;">Price</th>
+              <th class="text-center" style="width: 80px;">Action</th>
+              <th class="text-center" style="width: 80px;">ID</th>
+              <!-- <th class="text-center">Body</th> -->
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let post of _tradesArray">
+              <td class="text-center" style="width: 80px;">{{post.ticker}}</td>
+              <td class="text-center" style="width: 80px;">{{post.numShares}}</td>
+              <td class="text-center" style="width: 80px;">{{post.price}}</td>
+              <td class="text-center" style="width: 80px;">{{post.action}}</td>
+              <td class="text-center" style="width: 80px;">{{post.id}}</td>
+          </tr>
+          </tbody>
+      </table>
+   </div>      
+  </div>
+
